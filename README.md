@@ -2,21 +2,23 @@
 
 # Syed Tashfin
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=24&pause=1200&color=1F6FEB&center=true&vCenter=true&width=900&lines=Platform+Engineering+%7C+Cloud+%7C+DevOps;Backend+Systems+%7C+GitOps+%7C+Automation;Applied+AI+Systems+%7C+Local+LLM+Workflows;Building+clear%2C+auditable%2C+maintainable+systems)](https://github.com/SyedTashfin)
+<p>
+  <img src="./assets/profile-console.svg" alt="Platform Systems Console" width="960" />
+</p>
 
-**Platform Engineering · Cloud · DevOps · Backend Systems · Applied AI**
+**Platform Engineering · Cloud Infrastructure · DevOps · Backend Systems · Applied AI**
 
 Paris, France
 
-[Portfolio](https://syedtashfin.com) · [LinkedIn](https://www.linkedin.com/in/syed-mostafa) · [GitHub](https://github.com/SyedTashfin)
+[Portfolio](https://syedtashfin.com) · [LinkedIn](https://www.linkedin.com/in/syed-mostafa)
 
 </div>
 
 ## Intro
 
-I build production-oriented systems across infrastructure, backend services, automation, and AI workflows. My focus is on work that is understandable, auditable, deployable, and maintainable once it reaches real users and real operations.
+I build practical engineering systems across infrastructure, backend services, automation, and AI workflows. My focus is on systems that are understandable, auditable, deployable, and maintainable once they are in real use.
 
-I care about the handoff from idea to system: design, delivery, observability, and the operational details that keep software reliable. I also bring a teaching and communication background, which helps when explaining technical decisions clearly to both engineers and non-engineers.
+I care about the path from problem to system design to delivery. That means clear architecture, reliable operations, and technical choices that are easy to explain to teammates, interviewers, and stakeholders.
 
 ## System map
 
@@ -45,22 +47,22 @@ flowchart LR
 
 ## Selected projects
 
-| Project | What it demonstrates | Technical focus |
-| --- | --- | --- |
-| [AtouPay](https://github.com/SyedTashfin/AtouPay) | A payment-first rental platform that shows product thinking across mobile and backend delivery. | Expo, Fastify, TypeScript, product engineering |
-| [ISO-27001-Web-App](https://github.com/SyedTashfin/ISO-27001-Web-App) | An ISO 27001 learning app built around evidence, audit thinking, nonconformity practice, and mock-exam prep. | Next.js, learning workflow, compliance-minded design |
-| [Outsight-MultiTenant-GitOps-Lab](https://github.com/SyedTashfin/Outsight-MultiTenant-GitOps-Lab) | A multi-tenant Kubernetes lab that shows CI/CD, GitOps, and observability in one system. | Kubernetes, GitOps, CI/CD, observability |
-| [Local-Multi-LLM-Orchestrator](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator) | A local-first multi-LLM system that demonstrates structured orchestration and model coordination. | Local LLMs, ranking, review, workflow orchestration |
-| [Cloud-Analytics-ML-Pipeline](https://github.com/SyedTashfin/Cloud-Analytics-ML-Pipeline) | A reproducible analytics pipeline that highlights data processing and output automation. | PySpark, feature engineering, dashboards |
-| [Freelance-Teaching](https://github.com/SyedTashfin/Freelance-Teaching) | A teaching-service microsite that reflects communication, presentation, and online presence work. | Web presence, education, service positioning |
+| Project | What it demonstrates |
+| --- | --- |
+| [AtouPay](https://github.com/SyedTashfin/AtouPay) | Payment-first rental platform work that shows product thinking across mobile and backend delivery; technical focus: Expo, Fastify, TypeScript, product engineering. |
+| [ISO-27001-Web-App](https://github.com/SyedTashfin/ISO-27001-Web-App) | ISO 27001 learning tooling built around evidence, audit thinking, nonconformity practice, and mock-exam prep; technical focus: Next.js and compliance-minded UX. |
+| [Outsight-MultiTenant-GitOps-Lab](https://github.com/SyedTashfin/Outsight-MultiTenant-GitOps-Lab) | Multi-tenant Kubernetes lab showing CI/CD, GitOps, and observability in one system; technical focus: Kubernetes, GitOps, and operational delivery. |
+| [Local-Multi-LLM-Orchestrator](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator) | Local-first multi-LLM orchestration with review and ranking; technical focus: local models, coordination, and workflow design. |
+| [Cloud-Analytics-ML-Pipeline](https://github.com/SyedTashfin/Cloud-Analytics-ML-Pipeline) | Reproducible analytics pipeline that highlights data processing and output automation; technical focus: PySpark, feature engineering, dashboards. |
+| [Freelance-Teaching](https://github.com/SyedTashfin/Freelance-Teaching) | Teaching-service microsite and educator portfolio work; technical focus: web presence, communication, and service positioning. |
 
 ## What this profile demonstrates
 
-- Moving from idea to working system
-- Backend, deployment, infrastructure, and automation knowledge
+- Turning ideas into working systems
+- Backend and infrastructure understanding
+- Deployment and GitOps thinking
 - Security and compliance awareness
 - Documentation and teaching ability
-- Production-oriented thinking
 
 ## Roles I am targeting
 
@@ -73,15 +75,10 @@ flowchart LR
 
 ## Current direction
 
-My current focus is on cloud-native infrastructure, GitOps and platform workflows, backend reliability, AI-assisted engineering systems, and security/compliance automation.
+My current direction is cloud-native infrastructure, GitOps and platform workflows, backend reliability, AI-assisted engineering systems, and security and compliance automation.
 
 ## Contact
 
 - Portfolio: [syedtashfin.com](https://syedtashfin.com)
 - LinkedIn: [linkedin.com/in/syed-mostafa](https://www.linkedin.com/in/syed-mostafa)
-- GitHub: [github.com/SyedTashfin](https://github.com/SyedTashfin)
-
-## Contribution snake
-
-![Contribution snake](https://raw.githubusercontent.com/SyedTashfin/SyedTashfin/output/github-contribution-grid-snake.svg)
 
