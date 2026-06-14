@@ -1,3 +1,5 @@
+![Syed Tashfin profile banner](assets/profile-banner.png)
+
 # Syed Tashfin
 
 Platform Engineering · Cloud · DevOps · AI Systems
