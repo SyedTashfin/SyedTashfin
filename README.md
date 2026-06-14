@@ -81,3 +81,7 @@ My current focus is on cloud-native infrastructure, GitOps and platform workflow
 - LinkedIn: [linkedin.com/in/syed-mostafa](https://www.linkedin.com/in/syed-mostafa)
 - GitHub: [github.com/SyedTashfin](https://github.com/SyedTashfin)
 
+## Contribution snake
+
+![Contribution snake](https://raw.githubusercontent.com/SyedTashfin/SyedTashfin/output/github-contribution-grid-snake.svg)
+
