@@ -2,7 +2,7 @@
 
 # Syed Tashfin
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=24&pause=1200&color=1F6FEB&center=true&vCenter=true&width=900&lines=Platform+Engineering+%7C+Cloud+%7C+DevOps;Backend+Systems+%7C+GitOps+%7C+Automation;Applied+AI+Systems+%7C+Local+LLM+Workflows;Building+clear%2C+auditable%2C+production-ready+systems)](https://github.com/SyedTashfin)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=24&pause=1200&color=1F6FEB&center=true&vCenter=true&width=900&lines=Platform+Engineering+%7C+Cloud+%7C+DevOps;Backend+Systems+%7C+GitOps+%7C+Automation;Applied+AI+Systems+%7C+Local+LLM+Workflows;Building+clear%2C+auditable%2C+maintainable+systems)](https://github.com/SyedTashfin)
 
 **Platform Engineering · Cloud · DevOps · Backend Systems · Applied AI**
 
