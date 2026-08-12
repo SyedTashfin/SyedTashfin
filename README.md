@@ -8,7 +8,7 @@
 
 Paris, France · Targeting English-speaking platform, backend, cloud and AI-platform roles
 
-[Portfolio](https://syedtashfin.com) · [Case studies](https://syedtashfin.com/case-studies) · [LinkedIn](https://www.linkedin.com/in/syed-mostafa) · [Email](mailto:syed@syedtashfin.com)
+[Portfolio](https://syedtashfin.com) · [Engineering brief](assets/from-commit-to-observable-rollback.pdf) · [Case studies](https://syedtashfin.com/case-studies) · [LinkedIn](https://www.linkedin.com/in/syed-mostafa) · [Email](mailto:syed@syedtashfin.com)
 
 </div>
 
@@ -44,7 +44,7 @@ code → tests → immutable artifact → reviewed desired state → runtime →
 
 ## Useful review paths
 
-- **Platform / cloud:** start with the [GitOps case study](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas).
+- **Platform / cloud:** start with the [six-page engineering brief](assets/from-commit-to-observable-rollback.pdf), then inspect the [full GitOps case study](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas).
 - **Backend / AI systems:** inspect [Thales Video Indexing](https://github.com/SyedTashfin/Thales-optronic-video-indexing) and [LLM Council](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator).
 - **Security-aware product engineering:** inspect [ISO 27001 Lab](https://github.com/SyedTashfin/ISO-27001-Web-App) and [ATouPay](https://github.com/SyedTashfin/AtouPay).
 - **Broader evidence:** use the [portfolio evidence map](https://syedtashfin.com/evidence-map).
