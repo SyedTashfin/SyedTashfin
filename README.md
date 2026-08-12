@@ -1,5 +1,7 @@
 <div align="center">
 
+[![Platform and backend engineering — building observable AI systems](assets/platform-engineering-banner.gif)](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas)
+
 # Syed Mohammad Shah Mostafa (Tash)
 
 ### Platform & Backend Engineer building observable AI systems
@@ -34,9 +36,11 @@ code → tests → immutable artifact → reviewed desired state → runtime →
 - [OpenTelemetry JavaScript contrib PR #3669](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3669) — package deprecation behavior, documentation, and a focused regression test. **Open and awaiting maintainer review; not presented as merged.**
 - [Grafana MCP issue #987 analysis](https://github.com/grafana/mcp-grafana/issues/987#issuecomment-5273018756) — traced service-account token rotation across stdio and HTTP client lifecycles and proposed maintainer-reviewable implementation paths before changing authentication code.
 
-## Current technical focus
+## Engineering focus
 
-`TypeScript` · `Python` · `FastAPI` · `Fastify` · `PostgreSQL` · `Docker` · `Kubernetes` · `Helm` · `Argo CD` · `GitHub Actions` · `Prometheus` · `Grafana` · `OpenTelemetry` · `LangGraph` · `RAG / pgvector`
+| Platform delivery | Backend systems | Observability & AI |
+| --- | --- | --- |
+| Linux · Docker · Kubernetes · Helm · Argo CD · GitHub Actions | TypeScript · Python · FastAPI · Fastify · PostgreSQL | OpenTelemetry · Prometheus · Grafana · LangGraph · RAG · pgvector |
 
 ## Useful review paths
 
