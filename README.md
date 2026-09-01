@@ -62,7 +62,7 @@ Early in the contribution cycle — I am transparent that no upstream merge has 
 
 My process: reproduce the issue → propose a focused change → sign the CLA → iterate with maintainers → land. I log scope honestly so nothing is presented as merged before it is.
 
-## Security hardening (LC production, ESILV internship)
+## Security hardening 
 
 A proportionate security baseline applied to Linguistic Communication's public Next.js platform, validated in staging then production:
 
