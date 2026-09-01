@@ -35,10 +35,9 @@
            background: radial-gradient(circle, rgba(96,165,250,0.10) 0%, rgba(96,165,250,0) 60%); }
   #grid { position: absolute; inset: 0; opacity: 0.9; }
   .gline { position: absolute; background: var(--grid); }
-  #glowPulse { position: absolute; inset: 0; background: transparent; }
 
   /* ---------- identity (always visible) ---------- */
-  #identity { position: absolute; left: 64px; top: 48px; width: 620px; }
+  #identity { position: absolute; left: 64px; top: 48px; width: 600px; }
   #badge {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 6px 14px; border-radius: 999px;
@@ -55,16 +54,16 @@
   }
   #tagline { margin-top: 9px; font-size: 15px; color: var(--muted); }
   #tagline .caret { color: var(--teal); margin-right: 7px; }
-  #chips { margin-top: 22px; display: flex; gap: 9px; flex-wrap: nowrap; }
+  #chips { margin-top: 22px; display: flex; gap: 8px; flex-wrap: nowrap; }
   .chip {
-    padding: 5px 12px; border-radius: 999px; white-space: nowrap;
+    padding: 4px 11px; border-radius: 999px; white-space: nowrap;
     border: 1px solid var(--border); background: rgba(148,163,184,0.06);
-    font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 11px; color: #c9d5e4;
+    font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 10.5px; color: #c9d5e4;
   }
 
   /* ---------- terminal card ---------- */
   #term {
-    position: absolute; right: 64px; top: 44px; width: 452px; height: 308px;
+    position: absolute; right: 64px; top: 44px; width: 452px; height: 278px;
     background: rgba(15,26,44,0.92); border: 1px solid var(--border); border-radius: 14px;
     box-shadow: 0 24px 60px -20px rgba(0,0,0,0.55);
   }
@@ -77,11 +76,11 @@
   #tlive { margin-left: auto; display: flex; align-items: center; gap: 7px;
            font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 11px; color: var(--teal); }
   #tlive .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
-  #tbody { position: absolute; top: 52px; left: 0; right: 0; bottom: 14px; padding: 0 18px; font-family: "SF Mono", Menlo, Monaco, monospace; }
-  .line { position: relative; height: 26px; line-height: 26px; font-size: 13.5px; white-space: pre; }
+  #tbody { position: absolute; top: 50px; left: 0; right: 0; bottom: 12px; padding: 0 18px; font-family: "SF Mono", Menlo, Monaco, monospace; }
+  .line { position: relative; height: 24px; line-height: 24px; font-size: 13px; white-space: pre; }
   .sym { font-weight: 700; }
   #cursor {
-    position: absolute; width: 8px; height: 17px; background: var(--teal);
+    position: absolute; width: 8px; height: 16px; background: var(--teal);
     border-radius: 1px; transform: translateY(3px);
   }
   #tprog { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(148,163,184,0.10);
@@ -89,17 +88,17 @@
   #tprog .fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--blue)); }
 
   /* ---------- bottom pipeline ---------- */
-  #pipe { position: absolute; left: 64px; right: 64px; bottom: 26px; height: 46px; }
-  #pbar { position: absolute; left: 20px; right: 20px; top: 17px; height: 2px; background: var(--border); }
-  .node { position: absolute; top: 7px; transform: translateX(-50%); text-align: center; }
+  #pipe { position: absolute; left: 64px; right: 64px; bottom: 20px; height: 44px; }
+  #pbar { position: absolute; left: 20px; right: 20px; top: 15px; height: 2px; background: var(--border); }
+  .node { position: absolute; top: 5px; transform: translateX(-50%); text-align: center; }
   .node .ring {
     width: 20px; height: 20px; margin: 0 auto; border-radius: 50%;
     border: 2px solid #33455f; background: var(--bg1); transition: none;
   }
   .node .lbl { margin-top: 5px; font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 10px; color: #7d90ab; white-space: nowrap; }
-  .pkt { position: absolute; top: 17px; width: 14px; height: 14px; border-radius: 50%; transform: translate(-50%,-50%); }
+  .pkt { position: absolute; top: 15px; width: 14px; height: 14px; border-radius: 50%; transform: translate(-50%,-50%); }
 
-  #foot { position: absolute; left: 64px; right: 64px; bottom: 8px; text-align: right;
+  #foot { position: absolute; left: 64px; right: 64px; bottom: 5px; text-align: right;
           font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 10px; color: #5c7089; }
 </style>
 </head>
@@ -109,7 +108,6 @@
   <div id="glowT"></div>
   <div id="glowB"></div>
   <div id="grid"></div>
-  <div id="glowPulse"></div>
 
   <div id="identity">
     <div id="badge"><span class="dot"></span>SYEDTASHFIN · github.com/SyedTashfin</div>
@@ -138,42 +136,42 @@
 <script>
 (function () {
   var DURATION = 5.0;
-  var stage = document.getElementById('stage');
+  var IDLE_AFTER = 4.60;
+  var CLEAR = 0.40;
 
   /* ---------- grid ---------- */
   var grid = document.getElementById('grid');
-  var gl = [];
   (function () {
     for (var x = 0; x <= 1200; x += 40) {
       var d = document.createElement('div'); d.className = 'gline';
       d.style.left = x + 'px'; d.style.top = '0'; d.style.width = '1px'; d.style.height = '400px';
-      grid.appendChild(d); gl.push(d);
+      grid.appendChild(d);
     }
     for (var y = 0; y <= 400; y += 40) {
       var e = document.createElement('div'); e.className = 'gline';
       e.style.top = y + 'px'; e.style.left = '0'; e.style.height = '1px'; e.style.width = '1200px';
-      grid.appendChild(e); gl.push(e);
+      grid.appendChild(e);
     }
   })();
 
   /* ---------- chips ---------- */
   var CHIPS = ['Kubernetes','Argo CD','GitHub Actions','OpenTelemetry','Prometheus','TypeScript'];
   var chipsEl = document.getElementById('chips');
-  var chips = CHIPS.map(function (c) {
+  CHIPS.forEach(function (c) {
     var s = document.createElement('span'); s.className = 'chip'; s.textContent = c;
-    chipsEl.appendChild(s); return s;
+    chipsEl.appendChild(s);
   });
 
-  /* ---------- terminal ---------- */
+  /* ---------- terminal: a deploy that observability saves ---------- */
   var LINES = [
-    { sym:'$',  sc:'#8da2bd', text:' git push origin main',                 tc:'#eaf1f9', start:0.15, dur:0.45 },
-    { sym:'✓',  sc:'#34d399', text:' 2,847 tests passed · 13s',             tc:'#eaf1f9', start:0.70, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' build multi-arch image (amd64/arm64)', tc:'#cbd7e6', start:1.25, dur:0.50 },
-    { sym:'→',  sc:'#2dd4bf', text:' pushed ghcr.io · 118 MB',               tc:'#cbd7e6', start:1.85, dur:0.40 },
-    { sym:'✓',  sc:'#34d399', text:' Argo CD synced · 9f3c2a1',              tc:'#eaf1f9', start:2.40, dur:0.40 },
-    { sym:'✓',  sc:'#34d399', text:' canary 100% · rollout healthy',         tc:'#eaf1f9', start:2.90, dur:0.40 },
-    { sym:'✓',  sc:'#34d399', text:' telemetry streaming',                   tc:'#eaf1f9', start:3.40, dur:0.30 },
-    { sym:'',   sc:'#fb7185', text:' rollback ready — prometheus gate',      tc:'#fb7185', start:3.85, dur:0.35 }
+    { sym:'$',  sc:'#8da2bd', text:' kubectl apply -f tenants/acme/prod', tc:'#eaf1f9', start:0.15, dur:0.40 },
+    { sym:'✓',  sc:'#34d399', text:' 3 tenants reconciled · argo cd',      tc:'#eaf1f9', start:0.60, dur:0.35 },
+    { sym:'▲',  sc:'#fbbf24', text:' p99 latency 940ms → 2.1s',            tc:'#f3e3c2', start:1.05, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' prometheus gate · canary held at 20%',tc:'#cbd7e6', start:1.55, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' root cause · feature-store timeout',   tc:'#cbd7e6', start:2.05, dur:0.40 },
+    { sym:'→',  sc:'#fb7185', text:' rollback 9f3c2a1 → 7a1b9d0',         tc:'#f3d3d9', start:2.55, dur:0.40 },
+    { sym:'✓',  sc:'#34d399', text:' latency restored · 312ms',            tc:'#eaf1f9', start:3.05, dur:0.35 },
+    { sym:'',   sc:'#2dd4bf', text:' observable = safe to ship',            tc:'#2dd4bf', start:3.50, dur:0.35 }
   ];
   var tbody = document.getElementById('tbody');
   var lineEls = LINES.map(function (L) {
@@ -182,7 +180,7 @@
     var t = document.createElement('span');
     d.appendChild(s); d.appendChild(t);
     tbody.appendChild(d);
-    return { symEl: s, txtEl: t, L: L };
+    return { symEl: s, txtEl: t };
   });
   var cursor = document.createElement('div'); cursor.id = 'cursor';
   tbody.appendChild(cursor);
@@ -193,7 +191,7 @@
   var NCOLORS = ['#60a5fa','#a78bfa','#2dd4bf','#fbbf24','#2dd4bf','#2dd4bf','#fb7185'];
   var pipe = document.getElementById('pipe');
   var pbar = document.getElementById('pbar');
-  var nodes = NODES.map(function (n, i) {
+  var nodes = NODES.map(function (n) {
     var d = document.createElement('div'); d.className = 'node';
     var ring = document.createElement('div'); ring.className = 'ring';
     var lbl = document.createElement('div'); lbl.className = 'lbl'; lbl.textContent = n;
@@ -210,69 +208,56 @@
   function ease(v){ return 0.5 - 0.5 * Math.cos(Math.PI * clamp01(v)); }
 
   function layoutNodes() {
-    var w = pipe.clientWidth; // 1200 - 128 = 1072
-    var xs = NODES.map(function (_, i) { return 40 + (w - 80) * (i / (NODES.length - 1)); });
+    var w = pipe.clientWidth;
     nodes.forEach(function (n, i) {
-      n.el.style.left = xs[i] + 'px';
-      n.x = xs[i];
+      var x = 40 + (w - 80) * (i / (NODES.length - 1));
+      n.el.style.left = x + 'px';
+      n.x = x;
     });
-    pbar.style.left = '20px';
-    pbar.style.right = '20px';
   }
-
-  var IDLE_AFTER = 4.72;  // terminal clears back to idle prompt
-  var CLEAR = 0.34;       // fade duration for clear
 
   function render(t) {
     var tt = t % DURATION;
 
     /* background pulse (very subtle) */
     var pulse = 0.5 + 0.5 * Math.sin(tt / DURATION * Math.PI * 2);
-    var glow = document.getElementById('glowT');
-    glow.style.opacity = String(0.75 + 0.25 * pulse);
+    document.getElementById('glowT').style.opacity = String(0.75 + 0.25 * pulse);
 
     /* ---------- terminal ---------- */
     var clearing = tt > IDLE_AFTER;
     var idle = tt < 0.02 || clearing;
 
-    // compute per-line char counts
     var lineStates = LINES.map(function (L) {
       var prog = clamp01((tt - L.start) / L.dur);
-      var n = Math.floor(prog * L.text.length);
-      var done = prog >= 1;
-      var pop = clamp01((tt - (L.start + L.dur)) / 0.09);
-      return { n: n, done: done, pop: pop, L: L };
+      return { n: Math.floor(prog * L.text.length), done: prog >= 1, pop: clamp01((tt - (L.start + L.dur)) / 0.09) };
     });
 
-    // active line for cursor
     var activeIdx = -1;
     for (var i = 0; i < LINES.length; i++) {
-      var s = lineStates[i];
-      if (tt >= s.L.start && !s.done) { activeIdx = i; break; }
+      if (tt >= LINES[i].start && !lineStates[i].done) { activeIdx = i; break; }
     }
     if (activeIdx === -1) {
-      // find last line that's currently "done" and still within hold window
       for (var j = LINES.length - 1; j >= 0; j--) {
         if (lineStates[j].done) { activeIdx = j; break; }
       }
     }
 
-    // fade whole body during clear
     var bodyOpacity = clearing ? clamp01(1 - (tt - IDLE_AFTER) / CLEAR) : 1;
     tbody.style.opacity = String(bodyOpacity);
 
     lineEls.forEach(function (le, i) {
       var st = lineStates[i];
-      if (clearing || idle) { le.symEl.textContent = ''; le.txtEl.textContent = ''; le.symEl.style.color = st.L.sc; le.txtEl.style.color = st.L.tc; return; }
-      // symbol: for '$' prompt show immediately; for others pop on done
-      if (st.L.sym === '$') {
+      var L = LINES[i];
+      if (clearing || idle) { le.symEl.textContent = ''; le.txtEl.textContent = ''; return; }
+      if (L.sym === '$') {
         le.symEl.textContent = '$';
-        le.symEl.style.color = st.L.sc;
-        le.symEl.style.transform = 'none';
+        le.symEl.style.color = L.sc;
+      } else if (L.sym === '') {
+        le.symEl.textContent = '';
       } else {
         if (st.done) {
-          le.symEl.textContent = st.L.sym;
-          le.symEl.style.color = st.L.sc;
+          le.symEl.textContent = L.sym;
+          le.symEl.style.color = L.sc;
           var scl = 0.5 + 0.5 * ease(st.pop);
           le.symEl.style.transform = 'scale(' + scl.toFixed(3) + ')';
           le.symEl.style.display = 'inline-block';
@@ -280,53 +265,42 @@
           le.symEl.textContent = '';
         }
       }
-      le.txtEl.textContent = st.L.text.slice(0, st.n);
-      le.txtEl.style.color = st.L.tc;
+      le.txtEl.textContent = L.text.slice(0, st.n);
+      le.txtEl.style.color = L.tc;
     });
 
-    // cursor placement
+    /* cursor */
     if (clearing) { cursor.style.display = 'none'; }
     else {
       var blink = Math.floor(tt * 3) % 2 === 0;
       cursor.style.display = blink ? 'block' : 'none';
-      if (idle) {
-        cursor.style.left = '0px'; cursor.style.top = '4px';
-      } else if (activeIdx >= 0) {
+      if (idle) { cursor.style.left = '14px'; cursor.style.top = '5px'; }
+      else if (activeIdx >= 0) {
         var le = lineEls[activeIdx];
-        var st = lineStates[activeIdx];
-        var prefixW = (le.symEl.textContent === '$') ? 10 : (le.symEl.textContent ? 18 : 0);
-        // approximate char width for mono 13.5px ~ 8.1px
-        var cx = prefixW + st.n * 8.1;
-        cursor.style.left = cx + 'px';
-        cursor.style.top = (activeIdx * 26 + 5) + 'px';
+        var prefixW = (le.symEl.textContent === '$') ? 11 : (le.symEl.textContent ? 18 : 0);
+        cursor.style.left = (prefixW + lineStates[activeIdx].n * 7.8) + 'px';
+        cursor.style.top = (activeIdx * 24 + 4) + 'px';
       }
     }
 
-    // progress bar
-    var pstart = 0.15, pend = 4.2;
-    var pp = clamp01((tt - pstart) / (pend - pstart));
+    /* progress bar */
+    var pp = clamp01((tt - 0.15) / (4.2 - 0.15));
     tprogFill.style.width = (ease(pp) * 100).toFixed(1) + '%';
 
     /* ---------- pipeline packets ---------- */
     var w = pipe.clientWidth;
-    packets.forEach(function (p, k) {
+    var pktX = packets.map(function (p, k) {
       var ph = (tt / DURATION + k * 0.5) % 1.0;
       var x = 40 + (w - 80) * ease(ph);
       p.style.left = x + 'px';
-      p.style.top = '17px';
       p.style.background = k === 0 ? '#2dd4bf' : '#60a5fa';
       p.style.boxShadow = '0 0 12px ' + (k === 0 ? 'rgba(45,212,191,0.9)' : 'rgba(96,165,250,0.9)');
-    });
-    // node lighting based on packet proximity
-    var pktX = [];
-    packets.forEach(function (p, k) {
-      var ph = (tt / DURATION + k * 0.5) % 1.0;
-      pktX.push(40 + (w - 80) * ease(ph));
+      return x;
     });
     nodes.forEach(function (n, i) {
       var lit = false, color = NCOLORS[i];
       for (var k = 0; k < pktX.length; k++) {
-        if (Math.abs(pktX[k] - n.x) < 34) { lit = true; }
+        if (Math.abs(pktX[k] - n.x) < 34) lit = true;
       }
       n.ring.style.borderColor = lit ? color : '#33455f';
       n.ring.style.background = lit ? color : '#0f1a2c';
