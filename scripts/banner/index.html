@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+  :root {
+    --bg0: #0c1524;
+    --bg1: #101c30;
+    --panel: #0f1a2c;
+    --border: #243a55;
+    --grid: rgba(148, 163, 184, 0.055);
+    --text: #eaf1f9;
+    --muted: #93a5bd;
+    --teal: #2dd4bf;
+    --blue: #60a5fa;
+    --violet: #a78bfa;
+    --green: #34d399;
+    --amber: #fbbf24;
+    --rose: #fb7185;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 400px; overflow: hidden; background: var(--bg0); }
+  #stage {
+    position: relative;
+    width: 1200px;
+    height: 400px;
+    font-family: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--text);
+  }
+  /* ---------- background ---------- */
+  #bg { position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 100%); }
+  #glowT { position: absolute; width: 620px; height: 620px; right: -140px; top: -320px; border-radius: 50%;
+           background: radial-gradient(circle, rgba(45,212,191,0.14) 0%, rgba(45,212,191,0) 62%); }
+  #glowB { position: absolute; width: 720px; height: 720px; left: -220px; bottom: -480px; border-radius: 50%;
+           background: radial-gradient(circle, rgba(96,165,250,0.10) 0%, rgba(96,165,250,0) 60%); }
+  #grid { position: absolute; inset: 0; opacity: 0.9; }
+  .gline { position: absolute; background: var(--grid); }
+  #glowPulse { position: absolute; inset: 0; background: transparent; }
+
+  /* ---------- identity (always visible) ---------- */
+  #identity { position: absolute; left: 64px; top: 48px; width: 620px; }
+  #badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px;
+    border: 1px solid rgba(45,212,191,0.35);
+    background: rgba(45,212,191,0.08);
+    font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 12px; letter-spacing: 0.4px; color: var(--teal);
+  }
+  #badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+  #name { margin-top: 20px; font-size: 45px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.04; color: var(--text); }
+  #title {
+    margin-top: 12px; font-size: 24px; font-weight: 600; letter-spacing: -0.2px;
+    background: linear-gradient(90deg, var(--teal) 0%, var(--blue) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  #tagline { margin-top: 9px; font-size: 15px; color: var(--muted); }
+  #tagline .caret { color: var(--teal); margin-right: 7px; }
+  #chips { margin-top: 22px; display: flex; gap: 9px; flex-wrap: nowrap; }
+  .chip {
+    padding: 5px 12px; border-radius: 999px; white-space: nowrap;
+    border: 1px solid var(--border); background: rgba(148,163,184,0.06);
+    font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 11px; color: #c9d5e4;
+  }
+
+  /* ---------- terminal card ---------- */
+  #term {
+    position: absolute; right: 64px; top: 44px; width: 452px; height: 308px;
+    background: rgba(15,26,44,0.92); border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.55);
+  }
+  #tbar { position: absolute; top: 0; left: 0; right: 0; height: 38px;
+          border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 16px; }
+  #tdots { display: flex; gap: 7px; }
+  #tdots span { width: 11px; height: 11px; border-radius: 50%; }
+  #tdots .r { background: #ff5f57; } #tdots .y { background: #febc2e; } #tdots .g { background: #28c840; }
+  #ttitle { margin-left: 14px; font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 12px; color: var(--muted); }
+  #tlive { margin-left: auto; display: flex; align-items: center; gap: 7px;
+           font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 11px; color: var(--teal); }
+  #tlive .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+  #tbody { position: absolute; top: 52px; left: 0; right: 0; bottom: 14px; padding: 0 18px; font-family: "SF Mono", Menlo, Monaco, monospace; }
+  .line { position: relative; height: 26px; line-height: 26px; font-size: 13.5px; white-space: pre; }
+  .sym { font-weight: 700; }
+  #cursor {
+    position: absolute; width: 8px; height: 17px; background: var(--teal);
+    border-radius: 1px; transform: translateY(3px);
+  }
+  #tprog { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(148,163,184,0.10);
+           border-radius: 0 0 14px 14px; overflow: hidden; }
+  #tprog .fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--blue)); }
+
+  /* ---------- bottom pipeline ---------- */
+  #pipe { position: absolute; left: 64px; right: 64px; bottom: 26px; height: 46px; }
+  #pbar { position: absolute; left: 20px; right: 20px; top: 17px; height: 2px; background: var(--border); }
+  .node { position: absolute; top: 7px; transform: translateX(-50%); text-align: center; }
+  .node .ring {
+    width: 20px; height: 20px; margin: 0 auto; border-radius: 50%;
+    border: 2px solid #33455f; background: var(--bg1); transition: none;
+  }
+  .node .lbl { margin-top: 5px; font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 10px; color: #7d90ab; white-space: nowrap; }
+  .pkt { position: absolute; top: 17px; width: 14px; height: 14px; border-radius: 50%; transform: translate(-50%,-50%); }
+
+  #foot { position: absolute; left: 64px; right: 64px; bottom: 8px; text-align: right;
+          font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 10px; color: #5c7089; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div>
+  <div id="glowT"></div>
+  <div id="glowB"></div>
+  <div id="grid"></div>
+  <div id="glowPulse"></div>
+
+  <div id="identity">
+    <div id="badge"><span class="dot"></span>SYEDTASHFIN · github.com/SyedTashfin</div>
+    <div id="name">Syed Mohammad Shah Mostafa</div>
+    <div id="title">Platform &amp; Backend Engineer</div>
+    <div id="tagline"><span class="caret">▸</span>building observable AI systems</div>
+    <div id="chips"></div>
+  </div>
+
+  <div id="term">
+    <div id="tbar">
+      <div id="tdots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      <div id="ttitle">deploy — main</div>
+      <div id="tlive"><span class="dot"></span>LIVE</div>
+    </div>
+    <div id="tbody"></div>
+    <div id="tprog"><div class="fill"></div></div>
+  </div>
+
+  <div id="pipe">
+    <div id="pbar"></div>
+  </div>
+  <div id="foot">DESIGN · BUILD · OBSERVE · IMPROVE</div>
+</div>
+
+<script>
+(function () {
+  var DURATION = 5.0;
+  var stage = document.getElementById('stage');
+
+  /* ---------- grid ---------- */
+  var grid = document.getElementById('grid');
+  var gl = [];
+  (function () {
+    for (var x = 0; x <= 1200; x += 40) {
+      var d = document.createElement('div'); d.className = 'gline';
+      d.style.left = x + 'px'; d.style.top = '0'; d.style.width = '1px'; d.style.height = '400px';
+      grid.appendChild(d); gl.push(d);
+    }
+    for (var y = 0; y <= 400; y += 40) {
+      var e = document.createElement('div'); e.className = 'gline';
+      e.style.top = y + 'px'; e.style.left = '0'; e.style.height = '1px'; e.style.width = '1200px';
+      grid.appendChild(e); gl.push(e);
+    }
+  })();
+
+  /* ---------- chips ---------- */
+  var CHIPS = ['Kubernetes','Argo CD','GitHub Actions','OpenTelemetry','Prometheus','TypeScript'];
+  var chipsEl = document.getElementById('chips');
+  var chips = CHIPS.map(function (c) {
+    var s = document.createElement('span'); s.className = 'chip'; s.textContent = c;
+    chipsEl.appendChild(s); return s;
+  });
+
+  /* ---------- terminal ---------- */
+  var LINES = [
+    { sym:'$',  sc:'#8da2bd', text:' git push origin main',                 tc:'#eaf1f9', start:0.15, dur:0.45 },
+    { sym:'✓',  sc:'#34d399', text:' 2,847 tests passed · 13s',             tc:'#eaf1f9', start:0.70, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' build multi-arch image (amd64/arm64)', tc:'#cbd7e6', start:1.25, dur:0.50 },
+    { sym:'→',  sc:'#2dd4bf', text:' pushed ghcr.io · 118 MB',               tc:'#cbd7e6', start:1.85, dur:0.40 },
+    { sym:'✓',  sc:'#34d399', text:' Argo CD synced · 9f3c2a1',              tc:'#eaf1f9', start:2.40, dur:0.40 },
+    { sym:'✓',  sc:'#34d399', text:' canary 100% · rollout healthy',         tc:'#eaf1f9', start:2.90, dur:0.40 },
+    { sym:'✓',  sc:'#34d399', text:' telemetry streaming',                   tc:'#eaf1f9', start:3.40, dur:0.30 },
+    { sym:'',   sc:'#fb7185', text:' rollback ready — prometheus gate',      tc:'#fb7185', start:3.85, dur:0.35 }
+  ];
+  var tbody = document.getElementById('tbody');
+  var lineEls = LINES.map(function (L) {
+    var d = document.createElement('div'); d.className = 'line';
+    var s = document.createElement('span'); s.className = 'sym';
+    var t = document.createElement('span');
+    d.appendChild(s); d.appendChild(t);
+    tbody.appendChild(d);
+    return { symEl: s, txtEl: t, L: L };
+  });
+  var cursor = document.createElement('div'); cursor.id = 'cursor';
+  tbody.appendChild(cursor);
+  var tprogFill = document.querySelector('#tprog .fill');
+
+  /* ---------- pipeline nodes ---------- */
+  var NODES = ['CODE','TESTS','ARTIFACT','GITOPS','RUNTIME','TELEMETRY','ROLLBACK'];
+  var NCOLORS = ['#60a5fa','#a78bfa','#2dd4bf','#fbbf24','#2dd4bf','#2dd4bf','#fb7185'];
+  var pipe = document.getElementById('pipe');
+  var pbar = document.getElementById('pbar');
+  var nodes = NODES.map(function (n, i) {
+    var d = document.createElement('div'); d.className = 'node';
+    var ring = document.createElement('div'); ring.className = 'ring';
+    var lbl = document.createElement('div'); lbl.className = 'lbl'; lbl.textContent = n;
+    d.appendChild(ring); d.appendChild(lbl); pipe.appendChild(d);
+    return { el: d, ring: ring, lbl: lbl };
+  });
+  var packets = [];
+  for (var k = 0; k < 2; k++) {
+    var p = document.createElement('div'); p.className = 'pkt';
+    pipe.appendChild(p); packets.push(p);
+  }
+
+  function clamp01(v){ return v < 0 ? 0 : (v > 1 ? 1 : v); }
+  function ease(v){ return 0.5 - 0.5 * Math.cos(Math.PI * clamp01(v)); }
+
+  function layoutNodes() {
+    var w = pipe.clientWidth; // 1200 - 128 = 1072
+    var xs = NODES.map(function (_, i) { return 40 + (w - 80) * (i / (NODES.length - 1)); });
+    nodes.forEach(function (n, i) {
+      n.el.style.left = xs[i] + 'px';
+      n.x = xs[i];
+    });
+    pbar.style.left = '20px';
+    pbar.style.right = '20px';
+  }
+
+  var IDLE_AFTER = 4.72;  // terminal clears back to idle prompt
+  var CLEAR = 0.34;       // fade duration for clear
+
+  function render(t) {
+    var tt = t % DURATION;
+
+    /* background pulse (very subtle) */
+    var pulse = 0.5 + 0.5 * Math.sin(tt / DURATION * Math.PI * 2);
+    var glow = document.getElementById('glowT');
+    glow.style.opacity = String(0.75 + 0.25 * pulse);
+
+    /* ---------- terminal ---------- */
+    var clearing = tt > IDLE_AFTER;
+    var idle = tt < 0.02 || clearing;
+
+    // compute per-line char counts
+    var lineStates = LINES.map(function (L) {
+      var prog = clamp01((tt - L.start) / L.dur);
+      var n = Math.floor(prog * L.text.length);
+      var done = prog >= 1;
+      var pop = clamp01((tt - (L.start + L.dur)) / 0.09);
+      return { n: n, done: done, pop: pop, L: L };
+    });
+
+    // active line for cursor
+    var activeIdx = -1;
+    for (var i = 0; i < LINES.length; i++) {
+      var s = lineStates[i];
+      if (tt >= s.L.start && !s.done) { activeIdx = i; break; }
+    }
+    if (activeIdx === -1) {
+      // find last line that's currently "done" and still within hold window
+      for (var j = LINES.length - 1; j >= 0; j--) {
+        if (lineStates[j].done) { activeIdx = j; break; }
+      }
+    }
+
+    // fade whole body during clear
+    var bodyOpacity = clearing ? clamp01(1 - (tt - IDLE_AFTER) / CLEAR) : 1;
+    tbody.style.opacity = String(bodyOpacity);
+
+    lineEls.forEach(function (le, i) {
+      var st = lineStates[i];
+      if (clearing || idle) { le.symEl.textContent = ''; le.txtEl.textContent = ''; le.symEl.style.color = st.L.sc; le.txtEl.style.color = st.L.tc; return; }
+      // symbol: for '$' prompt show immediately; for others pop on done
+      if (st.L.sym === '$') {
+        le.symEl.textContent = '$';
+        le.symEl.style.color = st.L.sc;
+        le.symEl.style.transform = 'none';
+      } else {
+        if (st.done) {
+          le.symEl.textContent = st.L.sym;
+          le.symEl.style.color = st.L.sc;
+          var scl = 0.5 + 0.5 * ease(st.pop);
+          le.symEl.style.transform = 'scale(' + scl.toFixed(3) + ')';
+          le.symEl.style.display = 'inline-block';
+        } else {
+          le.symEl.textContent = '';
+        }
+      }
+      le.txtEl.textContent = st.L.text.slice(0, st.n);
+      le.txtEl.style.color = st.L.tc;
+    });
+
+    // cursor placement
+    if (clearing) { cursor.style.display = 'none'; }
+    else {
+      var blink = Math.floor(tt * 3) % 2 === 0;
+      cursor.style.display = blink ? 'block' : 'none';
+      if (idle) {
+        cursor.style.left = '0px'; cursor.style.top = '4px';
+      } else if (activeIdx >= 0) {
+        var le = lineEls[activeIdx];
+        var st = lineStates[activeIdx];
+        var prefixW = (le.symEl.textContent === '$') ? 10 : (le.symEl.textContent ? 18 : 0);
+        // approximate char width for mono 13.5px ~ 8.1px
+        var cx = prefixW + st.n * 8.1;
+        cursor.style.left = cx + 'px';
+        cursor.style.top = (activeIdx * 26 + 5) + 'px';
+      }
+    }
+
+    // progress bar
+    var pstart = 0.15, pend = 4.2;
+    var pp = clamp01((tt - pstart) / (pend - pstart));
+    tprogFill.style.width = (ease(pp) * 100).toFixed(1) + '%';
+
+    /* ---------- pipeline packets ---------- */
+    var w = pipe.clientWidth;
+    packets.forEach(function (p, k) {
+      var ph = (tt / DURATION + k * 0.5) % 1.0;
+      var x = 40 + (w - 80) * ease(ph);
+      p.style.left = x + 'px';
+      p.style.top = '17px';
+      p.style.background = k === 0 ? '#2dd4bf' : '#60a5fa';
+      p.style.boxShadow = '0 0 12px ' + (k === 0 ? 'rgba(45,212,191,0.9)' : 'rgba(96,165,250,0.9)');
+    });
+    // node lighting based on packet proximity
+    var pktX = [];
+    packets.forEach(function (p, k) {
+      var ph = (tt / DURATION + k * 0.5) % 1.0;
+      pktX.push(40 + (w - 80) * ease(ph));
+    });
+    nodes.forEach(function (n, i) {
+      var lit = false, color = NCOLORS[i];
+      for (var k = 0; k < pktX.length; k++) {
+        if (Math.abs(pktX[k] - n.x) < 34) { lit = true; }
+      }
+      n.ring.style.borderColor = lit ? color : '#33455f';
+      n.ring.style.background = lit ? color : '#0f1a2c';
+      n.ring.style.boxShadow = lit ? ('0 0 12px ' + color) : 'none';
+      n.lbl.style.color = lit ? '#eaf1f9' : '#7d90ab';
+    });
+  }
+
+  layoutNodes();
+  window.renderBanner = render;
+  render(0);
+})();
+</script>
+</body>
+</html>
