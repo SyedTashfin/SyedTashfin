@@ -14,13 +14,13 @@ Paris, France · Targeting English-speaking platform, backend, cloud and AI-plat
 
 ## What I do
 
-I build the part of the stack people rely on after launch — backend services, CI/CD and GitOps delivery, Kubernetes controls, telemetry, and bounded AI workflows. Everything I ship moves along one path, so it can be reviewed, released, observed and rolled back:
+Platform and backend engineer, focused on backend services, CI/CD and GitOps delivery, Kubernetes controls, telemetry, and AI systems that run on local infrastructure rather than external APIs. Work follows a single delivery path, so everything can be reviewed, released, observed and rolled back:
 
 ```text
 code → tests → immutable artifact → reviewed GitOps → runtime → telemetry → rollback
 ```
 
-My public work is grouped below by domain; each project is labeled by scope so the evidence stays honest.
+Public work is grouped below by domain; each project is labeled by scope so the evidence stays honest.
 
 ## Platform & delivery
 
@@ -30,12 +30,16 @@ My public work is grouped below by domain; each project is labeled by scope so t
 | [Cloud Analytics ML Pipeline](https://github.com/SyedTashfin/Cloud-Analytics-ML-Pipeline) | Production-style data lab | Config-driven PySpark ingestion, feature engineering, MLlib training/evaluation, dashboard artifacts, local-to-GCP Dataproc parity. |
 | LC production infrastructure | Employer org — documented | WordPress → versioned Next.js/TypeScript catalogue (299 SSG pages), separate staging/prod GitHub Actions paths on one VPS, incident recovery. Covered in the [engineering brief](assets/from-commit-to-observable-rollback.pdf). |
 
-## Backend & AI systems
+## Backend, local AI & agent systems
+
+A recurring thread is **local AI**: self-hosted inference (Ollama serving a 30B Qwen model) behind an authenticated OpenAI-compatible gateway bound to loopback, agent workflows orchestrated through Hermes gateways — including fixing a tool-call defect and validating real agent tool execution — and bounded workflows built on LangGraph and LangChain rather than dependent on external inference APIs.
 
 | Project | Scope | Engineering signal |
 | --- | --- | --- |
 | [Thales Optronic Video Indexing](https://github.com/SyedTashfin/Thales-optronic-video-indexing) | Academic collaboration | FastAPI, Celery/Redis, frame sampling, YOLO, OCR, Whisper transcription, semantic search, JSON/PDF/CSV reporting. |
-| [Local Multi-LLM Orchestrator](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator) | Personal systems project | Local Ollama services, anonymized peer review, chairman synthesis, strict JSON/Zod contracts, SQLite run history, health/latency observability. |
+| [Local Multi-LLM Orchestrator](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator) | Personal systems project | Local Ollama services (30B Qwen), anonymized peer review, chairman synthesis, strict JSON/Zod contracts, SQLite run history, health/latency observability. |
+| [OpsPilot](https://github.com/SyedTashfin/OpsPilot) | Personal systems project | Local-first RAG operations copilot: evidence collection across logs/metrics/deployments/runbooks, bounded structured LLM calls, persisted investigation steps, Ollama/Gemini provider boundaries, typed contracts, fail-closed validation, Langfuse tracing. |
+| [LC Academy (OpenMAIC)](https://github.com/linguisticcom/OpenMAIC) | Employer org — deployed | AI-assisted multi-agent classroom adapted from an open-source system, with organisation-aware access control and teacher review/publishing workflows. |
 
 ## Security engineering
 
@@ -55,12 +59,12 @@ My public work is grouped below by domain; each project is labeled by scope so t
 
 ## Open-source
 
-Early in the contribution cycle — I am transparent that no upstream merge has landed yet. What exists is verifiable in-progress work on flagship projects:
+Early in the contribution cycle — no upstream merge has landed yet, and that is stated plainly rather than implied otherwise. The existing work is verifiable and in progress on flagship projects:
 
-- **[OpenTelemetry JS contrib PR #3669](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3669)** — deprecation of the long-task instrumentation, reviewed by a maintainer, who asked for the replacement (`Long Animation Frames`) to be built first. I am building that replacement now. CLA signed, not merged.
+- **[OpenTelemetry JS contrib PR #3669](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3669)** — deprecation of the long-task instrumentation, reviewed by a maintainer, who asked for the replacement (`Long Animation Frames`) to be built first. That replacement is now being built. CLA signed, not merged.
 - **[Grafana MCP #987](https://github.com/grafana/mcp-grafana/issues/987)** — traced a service-account token-rotation bug across stdio and HTTP client lifecycles and proposed maintainer-reviewable implementation paths.
 
-My process: reproduce the issue → propose a focused change → sign the CLA → iterate with maintainers → land. I log scope honestly so nothing is presented as merged before it is.
+Process: reproduce the issue → propose a focused change → sign the CLA → iterate with maintainers → land. Scope is logged honestly so nothing is presented as merged before it is.
 
 ## Security hardening 
 
@@ -77,12 +81,12 @@ A proportionate security baseline applied to Linguistic Communication's public N
 
 | Platform delivery | Backend systems | Observability & AI |
 | --- | --- | --- |
-| Linux · Docker · Kubernetes · Helm · Argo CD · GitHub Actions | TypeScript · Python · FastAPI · Fastify · PostgreSQL | OpenTelemetry · Prometheus · Grafana · LangGraph · RAG · pgvector |
+| Linux · Docker · Kubernetes · Helm · Argo CD · GitHub Actions | TypeScript · Python · FastAPI · Fastify · PostgreSQL | OpenTelemetry · Prometheus · Grafana · LangGraph · LangChain · RAG · pgvector · Ollama |
 
 ## Useful review paths
 
 - **Platform / cloud:** the [six-page engineering brief](assets/from-commit-to-observable-rollback.pdf), then the [GitOps case study](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas).
-- **Backend / AI systems:** [Thales Video Indexing](https://github.com/SyedTashfin/Thales-optronic-video-indexing) and the [Local Multi-LLM Orchestrator](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator).
+- **Backend / local AI systems:** [Thales Video Indexing](https://github.com/SyedTashfin/Thales-optronic-video-indexing), the [Local Multi-LLM Orchestrator](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator) and [LC Academy (OpenMAIC)](https://github.com/linguisticcom/OpenMAIC).
 - **Security-aware engineering:** [ISO 27001 Lab](https://github.com/SyedTashfin/ISO-27001-Web-App) and the [LC production hardening](#security-hardening-lc-production-esilv-internship) above.
 - **Broader evidence:** the [portfolio evidence map](https://syedtashfin.com/evidence-map).
 
