@@ -66,7 +66,7 @@ Early in the contribution cycle — no upstream merge has landed yet, and that i
 
 Process: reproduce the issue → propose a focused change → sign the CLA → iterate with maintainers → land. Scope is logged honestly so nothing is presented as merged before it is.
 
-## Security hardening 
+## Security hardening
 
 A proportionate security baseline applied to Linguistic Communication's public Next.js platform, validated in staging then production:
 
@@ -87,7 +87,7 @@ A proportionate security baseline applied to Linguistic Communication's public N
 
 - **Platform / cloud:** the [six-page engineering brief](assets/from-commit-to-observable-rollback.pdf), then the [GitOps case study](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas).
 - **Backend / local AI systems:** [Thales Video Indexing](https://github.com/SyedTashfin/Thales-optronic-video-indexing), the [Local Multi-LLM Orchestrator](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator) and [LC Academy (OpenMAIC)](https://github.com/linguisticcom/OpenMAIC).
-- **Security-aware engineering:** [ISO 27001 Lab](https://github.com/SyedTashfin/ISO-27001-Web-App) and the [LC production hardening](#security-hardening-lc-production-esilv-internship) above.
+- **Security-aware engineering:** [ISO 27001 Lab](https://github.com/SyedTashfin/ISO-27001-Web-App) and the [LC production hardening](#security-hardening) above.
 - **Broader evidence:** the [portfolio evidence map](https://syedtashfin.com/evidence-map).
 
 <div align="center">
