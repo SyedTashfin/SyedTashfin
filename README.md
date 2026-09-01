@@ -54,8 +54,7 @@ A recurring thread is **local AI**: self-hosted inference (Ollama serving a 30B 
 | Project | Scope | Engineering signal |
 | --- | --- | --- |
 | [ATouPay](https://github.com/SyedTashfin/AtouPay) | Product MVP | Expo/React Native client, Fastify API, Firebase identity/data, backend-owned critical writes, receipts, recovery, provider boundary for payments. |
-| [SyntaxMap](https://github.com/SyedTashfin/Syntax-Map-Original) | Teaching product | Interactive classroom tool for English grammar practice, built and used at Linguistic Communication. |
-| [Fit Paris Flow](https://github.com/SyedTashfin/fit-paris-flow) | Product prototype | Fitness-scheduling web app (TypeScript, Vercel). |
+| [SyntaxMap](https://github.com/SyedTashfin/Syntax-Map-Internship) | Teaching product | Interactive classroom tool for English grammar practice, built and used at Linguistic Communication. |
 
 ## Open-source
 
