@@ -95,12 +95,11 @@ Full write-up: [LC Website & Network Security Hardening — audit → remediatio
 | --- | --- | --- |
 | Linux · Docker · Kubernetes · Helm · Argo CD · GitHub Actions | TypeScript · Python · FastAPI · Fastify · PostgreSQL | OpenTelemetry · Prometheus · Grafana · LangGraph · LangChain · RAG · pgvector · Ollama |
 
-## Useful review paths
+## Get in touch
 
-- **Platform / cloud:** the [six-page engineering brief](assets/from-commit-to-observable-rollback.pdf), then the [GitOps case study](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas).
-- **Backend / local AI systems:** [Thales Video Indexing](https://github.com/SyedTashfin/Thales-optronic-video-indexing), the [Local Multi-LLM Orchestrator](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator) and [LC Academy (OpenMAIC)](https://github.com/linguisticcom/OpenMAIC).
-- **Security-aware engineering:** [ISO 27001 Lab](https://github.com/SyedTashfin/ISO-27001-Web-App) and the [LC production hardening](#security-hardening) above.
-- **Broader evidence:** the [portfolio evidence map](https://syedtashfin.com/evidence-map).
+Open to platform, backend, cloud, and AI-platform roles — Paris or remote. The fastest read is the [six-page engineering brief](assets/from-commit-to-observable-rollback.pdf); the deepest is the [portfolio evidence map](https://syedtashfin.com/evidence-map).
+
+[Email](mailto:syed@syedtashfin.com) · [LinkedIn](https://www.linkedin.com/in/syed-mostafa) · [Portfolio](https://syedtashfin.com)
 
 <div align="center">
 
