@@ -22,6 +22,17 @@ code → tests → immutable artifact → reviewed GitOps → runtime → teleme
 
 Public work is grouped below by domain; each project is labeled by scope so the evidence stays honest.
 
+## Key case studies
+
+The strongest proof is in the written studies — each maps a real system to what was built, how it was verified, and what it cost:
+
+- **[LC Website & Network Security Hardening](https://syedtashfin.com/case-studies/lc-website-security-hardening)** — audit → remediation → verification on LC's production Next.js platform: retired the live HTML uploader, sandboxed embedded content, bounded the lead APIs, 13/13 hardened tests.
+- **[Linguistic Communication — Public Platform, LC Academy & Operations](https://syedtashfin.com/case-studies/linguistic-communication-edtech)** — WordPress → versioned Next.js catalogue (299 SSG pages), staging/prod delivery on one VPS, and the LC Academy multi-agent classroom.
+- **[Multi-Tenant GitOps Platform](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas)** — CI → immutable image → reviewed GitOps → Argo CD → Prometheus-gated rollouts → rollback, on a multi-tenant Kubernetes model.
+- **[Secure Teacher Onboarding & Document Pipeline](https://syedtashfin.com/case-studies/secure-teacher-onboarding-document-pipeline)** — NAS + Cloudflare + local-API document pipeline for LC teacher onboarding.
+- **[OpsPilot — Local-First AI Operations Copilot](https://syedtashfin.com/case-studies/opspilot-local-first-ai-operations-copilot)** — RAG over runbooks with bounded, fail-closed LLM calls and Langfuse tracing.
+- **[LLM Council — Local Multi-LLM Orchestrator](https://syedtashfin.com/case-studies/llm-council-local-multi-llm-orchestrator)** — local Ollama inference behind an authenticated gateway, anonymized peer review and chairman synthesis.
+
 ## Platform & delivery
 
 | Project | Scope | Engineering signal |
@@ -75,6 +86,8 @@ A proportionate security baseline applied to Linguistic Communication's public N
 - **Bot and abuse controls:** honeypot, minimum completion time, short-window duplicate suppression, SMTP rate limits.
 - **Edge identity and headers:** trusted client-IP restoration behind Cloudflare, baseline security headers, CSP report-only, disabled `X-Powered-By`, Nginx body/rate limits, `security.txt` + data-handling policy.
 - **Evidence:** a baseline-vs-hardened scenario harness (13/13 hardened tests pass; primary runtime/static classes 1/14 → 14/14) plus staging and production validation.
+
+Full write-up: [LC Website & Network Security Hardening — audit → remediation → verification](https://syedtashfin.com/case-studies/lc-website-security-hardening).
 
 ## Engineering focus
 
