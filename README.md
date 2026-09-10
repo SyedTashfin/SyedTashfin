@@ -58,10 +58,10 @@ A recurring thread is **local AI**: self-hosted inference (Ollama serving a 30B 
 
 ## Open-source
 
-Early in the contribution cycle — no upstream merge has landed yet, and that is stated plainly rather than implied otherwise. The existing work is verifiable and in progress on flagship projects:
+Early in the contribution cycle — no upstream merge has landed yet, and that is stated plainly rather than implied otherwise. Two implementation PRs are open and awaiting maintainer review:
 
-- **[OpenTelemetry JS contrib PR #3669](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3669)** — deprecation of the long-task instrumentation, reviewed by a maintainer, who asked for the replacement (`Long Animation Frames`) to be built first. That replacement is now being built. CLA signed, not merged.
-- **[Grafana MCP #987](https://github.com/grafana/mcp-grafana/issues/987)** — traced a service-account token-rotation bug across stdio and HTTP client lifecycles and proposed maintainer-reviewable implementation paths.
+- **[OpenTelemetry JS contrib PR #3751](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3751)** — new `@opentelemetry/instrumentation-long-animation-frame` package, the Long Animation Frames successor to the deprecated long-task instrumentation. Built to unblock [PR #3669](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3669), the long-task deprecation a maintainer reviewed and asked for this replacement to precede. CLA signed.
+- **[Grafana MCP PR #1166](https://github.com/grafana/mcp-grafana/pull/1166)** — fix for the stdio transport not re-reading `GRAFANA_SERVICE_ACCOUNT_TOKEN_FILE` after startup ([#987](https://github.com/grafana/mcp-grafana/issues/987)), with a token-rotation regression test.
 
 Process: reproduce the issue → propose a focused change → sign the CLA → iterate with maintainers → land. Scope is logged honestly so nothing is presented as merged before it is.
 
