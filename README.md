@@ -8,6 +8,8 @@
 
 Paris, France · Targeting English-speaking platform, backend, cloud and AI-platform roles
 
+Merged upstream: [MCP TypeScript SDK #2862](https://github.com/modelcontextprotocol/typescript-sdk/pull/2862) — shipped in `@modelcontextprotocol/client@2.2.0`
+
 [Portfolio](https://syedtashfin.com) · [Engineering brief](assets/from-commit-to-observable-rollback.pdf) · [Case studies](https://syedtashfin.com/case-studies) · [LinkedIn](https://www.linkedin.com/in/syed-mostafa) · [Email](mailto:syed@syedtashfin.com)
 
 </div>
@@ -69,12 +71,15 @@ A recurring thread is **local AI**: self-hosted inference (Ollama serving a 30B 
 
 ## Open-source
 
-Early in the contribution cycle — no upstream merge has landed yet, and that is stated plainly rather than implied otherwise. Two implementation PRs are open and awaiting maintainer review:
+Work lands upstream in maintained projects. Each entry states its real status — nothing is presented as merged before it is.
 
-- **[OpenTelemetry JS contrib PR #3751](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3751)** — new `@opentelemetry/instrumentation-long-animation-frame` package, the Long Animation Frames successor to the deprecated long-task instrumentation. Built to unblock [PR #3669](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3669), the long-task deprecation a maintainer reviewed and asked for this replacement to precede. CLA signed.
-- **[Grafana MCP PR #1166](https://github.com/grafana/mcp-grafana/pull/1166)** — fix for the stdio transport not re-reading `GRAFANA_SERVICE_ACCOUNT_TOKEN_FILE` after startup ([#987](https://github.com/grafana/mcp-grafana/issues/987)), with a token-rotation regression test.
+| Contribution | Status | What changed |
+| --- | --- | --- |
+| **[MCP TypeScript SDK #2862](https://github.com/modelcontextprotocol/typescript-sdk/pull/2862)**<br>`fix(client): preserve _meta on input_required results` | **Merged** · shipped in [`@modelcontextprotocol/client@2.2.0`](https://www.npmjs.com/package/@modelcontextprotocol/client) | A server's result-level `_meta` (including the `serverInfo` stamp) was dropped before an `allowInputRequired: true` caller could see it — the 2026-07-28 decode seam rebuilt the payload from `inputRequests` and `requestState` only. Traced the loss to both decode sites, passed the field through, added regression tests that fail unpatched. [commit](https://github.com/modelcontextprotocol/typescript-sdk/commit/e780e13869ad419a864b669bd5fa9702cfb36b14) |
+| **[OpenTelemetry browser #429](https://github.com/open-telemetry/opentelemetry-browser/pull/429)**<br>`feat(instrumentation): add Long Animation Frames instrumentation` | In review · changes requested | Long Animation Frames instrumentation for the OpenTelemetry browser SDK, the successor to the deprecated long-task API. Reviewed by three maintainers; the open asks are documenting behaviour around the browser's own ~200-entry buffer and not replaying that buffer on re-enable. |
+| **[OpenTelemetry JS contrib #3669](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3669)**<br>`fix(instrumentation-long-task): deprecate package` | In review | Deprecation notice, runtime warning and regression test for the long-task package ahead of its removal. |
 
-Process: reproduce the issue → propose a focused change → sign the CLA → iterate with maintainers → land. Scope is logged honestly so nothing is presented as merged before it is.
+Process: reproduce the issue → propose a focused change → sign the CLA → iterate with maintainers → land. One earlier attempt, [Grafana MCP #1166](https://github.com/grafana/mcp-grafana/pull/1166), was closed as won't-fix — the maintainer prefers the HTTP transport for that case.
 
 ## Security hardening
 
