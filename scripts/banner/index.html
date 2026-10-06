@@ -112,7 +112,7 @@
   <div id="identity">
     <div id="badge"><span class="dot"></span>SYEDTASHFIN · github.com/SyedTashfin</div>
     <div id="name">Syed Mohammad Shah Mostafa</div>
-    <div id="title">Platform &amp; Backend Engineer</div>
+    <div id="title">AI &amp; Platform Engineer</div>
     <div id="tagline"><span class="caret">▸</span>building observable AI systems</div>
     <div id="chips"></div>
   </div>
@@ -120,8 +120,8 @@
   <div id="term">
     <div id="tbar">
       <div id="tdots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
-      <div id="ttitle">deploy — main</div>
-      <div id="tlive"><span class="dot"></span>LIVE</div>
+      <div id="ttitle">opspilot — local-first</div>
+      <div id="tlive"><span class="dot"></span>TRACED</div>
     </div>
     <div id="tbody"></div>
     <div id="tprog"><div class="fill"></div></div>
@@ -155,23 +155,23 @@
   })();
 
   /* ---------- chips ---------- */
-  var CHIPS = ['Kubernetes','Argo CD','GitHub Actions','OpenTelemetry','Prometheus','TypeScript'];
+  var CHIPS = ['Kubernetes','Argo CD','OpenTelemetry','LangGraph','Ollama','TypeScript'];
   var chipsEl = document.getElementById('chips');
   CHIPS.forEach(function (c) {
     var s = document.createElement('span'); s.className = 'chip'; s.textContent = c;
     chipsEl.appendChild(s);
   });
 
-  /* ---------- terminal: a deploy that observability saves ---------- */
+  /* ---------- terminal: an agent run that stays honest ---------- */
   var LINES = [
-    { sym:'$',  sc:'#8da2bd', text:' kubectl apply -f tenants/acme/prod', tc:'#eaf1f9', start:0.15, dur:0.40 },
-    { sym:'✓',  sc:'#34d399', text:' 3 tenants reconciled · argo cd',      tc:'#eaf1f9', start:0.60, dur:0.35 },
-    { sym:'▲',  sc:'#fbbf24', text:' p99 latency 940ms → 2.1s',            tc:'#f3e3c2', start:1.05, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' prometheus gate · canary held at 20%',tc:'#cbd7e6', start:1.55, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' root cause · feature-store timeout',   tc:'#cbd7e6', start:2.05, dur:0.40 },
-    { sym:'→',  sc:'#fb7185', text:' rollback 9f3c2a1 → 7a1b9d0',         tc:'#f3d3d9', start:2.55, dur:0.40 },
-    { sym:'✓',  sc:'#34d399', text:' latency restored · 312ms',            tc:'#eaf1f9', start:3.05, dur:0.35 },
-    { sym:'',   sc:'#2dd4bf', text:' observable = safe to ship',            tc:'#2dd4bf', start:3.50, dur:0.35 }
+    { sym:'$',  sc:'#8da2bd', text:' opspilot ask "why is p99 up?"',          tc:'#eaf1f9', start:0.15, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' plan · 3 steps · retrieval first',       tc:'#cbd7e6', start:0.60, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' retrieve · runbooks · logs · deploys',   tc:'#cbd7e6', start:1.05, dur:0.40 },
+    { sym:'▲',  sc:'#fbbf24', text:' untyped tool output rejected · fail-closed', tc:'#f3e3c2', start:1.55, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' ollama · 30b qwen · local · 1.9s',       tc:'#cbd7e6', start:2.05, dur:0.40 },
+    { sym:'✓',  sc:'#34d399', text:' answer grounded · 3 sources cited',      tc:'#eaf1f9', start:2.55, dur:0.35 },
+    { sym:'→',  sc:'#2dd4bf', text:' langfuse trace · 12 steps persisted',    tc:'#cbd7e6', start:3.05, dur:0.40 },
+    { sym:'',   sc:'#2dd4bf', text:'grounded, not generated',                 tc:'#2dd4bf', start:3.50, dur:0.35 }
   ];
   var tbody = document.getElementById('tbody');
   var lineEls = LINES.map(function (L) {
@@ -185,6 +185,27 @@
   var cursor = document.createElement('div'); cursor.id = 'cursor';
   tbody.appendChild(cursor);
   var tprogFill = document.querySelector('#tprog .fill');
+
+  /* ---------- type metrics (cursor must sit after the last glyph) ---------- */
+  var PAD_LEFT = 18;                 /* #tbody horizontal padding */
+  var SYM_W = [];                    /* measured advance of each line symbol */
+  var CHAR_W = 7.8;
+  (function measure() {
+    var probe = document.createElement('span');
+    probe.className = 'line';
+    probe.style.position = 'absolute';
+    probe.style.visibility = 'hidden';
+    probe.style.whiteSpace = 'pre';
+    tbody.appendChild(probe);
+    probe.textContent = new Array(101).join('x');
+    CHAR_W = probe.getBoundingClientRect().width / 100;
+    LINES.forEach(function (L, i) {
+      if (!L.sym) { SYM_W[i] = 0; return; }
+      probe.textContent = L.sym;
+      SYM_W[i] = probe.getBoundingClientRect().width;
+    });
+    tbody.removeChild(probe);
+  })();
 
   /* ---------- pipeline nodes ---------- */
   var NODES = ['CODE','TESTS','ARTIFACT','GITOPS','RUNTIME','TELEMETRY','ROLLBACK'];
@@ -276,9 +297,9 @@
       cursor.style.display = blink ? 'block' : 'none';
       if (idle) { cursor.style.left = '14px'; cursor.style.top = '5px'; }
       else if (activeIdx >= 0) {
-        var le = lineEls[activeIdx];
-        var prefixW = (le.symEl.textContent === '$') ? 11 : (le.symEl.textContent ? 18 : 0);
-        cursor.style.left = (prefixW + lineStates[activeIdx].n * 7.8) + 'px';
+        /* the symbol span only takes space once it is rendered */
+        var symShown = lineEls[activeIdx].symEl.textContent ? SYM_W[activeIdx] : 0;
+        cursor.style.left = (PAD_LEFT + symShown + lineStates[activeIdx].n * CHAR_W) + 'px';
         cursor.style.top = (activeIdx * 24 + 4) + 'px';
       }
     }

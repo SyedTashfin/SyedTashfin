@@ -1,10 +1,10 @@
 <div align="center">
 
-[![Platform and backend engineering — building observable AI systems](assets/platform-engineering-banner.gif)](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas)
+[![AI and platform engineering — building observable AI systems](assets/platform-engineering-banner.gif)](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas)
 
 # Syed Mohammad Shah Mostafa (Tash)
 
-### Platform & Backend Engineer — building observable AI systems
+### AI & Platform Engineer — building observable AI systems
 
 Paris, France · Targeting English-speaking platform, backend, cloud and AI-platform roles
 
@@ -16,7 +16,7 @@ Merged upstream: [MCP TypeScript SDK #2862](https://github.com/modelcontextproto
 
 ## What I do
 
-Platform and backend engineer, focused on backend services, CI/CD and GitOps delivery, Kubernetes controls, telemetry, and AI systems that run on local infrastructure rather than external APIs. Work follows a single delivery path, so everything can be reviewed, released, observed and rolled back:
+AI and platform engineer, focused on backend services, CI/CD and GitOps delivery, Kubernetes controls, telemetry, and AI systems that run on local infrastructure rather than external APIs. Work follows a single delivery path, so everything can be reviewed, released, observed and rolled back:
 
 ```text
 code → tests → immutable artifact → reviewed GitOps → runtime → telemetry → rollback
