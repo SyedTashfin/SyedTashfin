@@ -120,8 +120,8 @@
   <div id="term">
     <div id="tbar">
       <div id="tdots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
-      <div id="ttitle">on-call — 01:58</div>
-      <div id="tlive"><span class="dot"></span><span id="tstatus">ALERT</span></div>
+      <div id="ttitle">ai council — local</div>
+      <div id="tlive"><span class="dot"></span>4 MODELS</div>
     </div>
     <div id="tbody"></div>
     <div id="tprog"><div class="fill"></div></div>
@@ -162,25 +162,17 @@
     chipsEl.appendChild(s);
   });
 
-  /* ---------- terminal: the 2am story a non-engineer can follow ---------- */
+  /* ---------- terminal: the AI system, in words anyone can follow ---------- */
   var LINES = [
-    { sym:'$',  sc:'#8da2bd', text:' 01:58 — alert: the site is down',    tc:'#eaf1f9', start:0.10, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' the monitoring i built caught it',   tc:'#cbd7e6', start:0.48, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' i was asleep. it wasn\'t.',          tc:'#eaf1f9', start:0.86, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' cause found · fix shipped',          tc:'#cbd7e6', start:1.24, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' test added. future me says thanks.', tc:'#eaf1f9', start:1.62, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' our AI runs on our own machines',    tc:'#cbd7e6', start:2.00, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' nothing leaves the building',        tc:'#cbd7e6', start:2.38, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' 6 case studies · syedtashfin.com',   tc:'#2dd4bf', start:2.76, dur:0.40 }
+    { sym:'$',  sc:'#8da2bd', text:' one question, four AI models',      tc:'#eaf1f9', start:0.10, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' three answer, one judges',         tc:'#cbd7e6', start:0.48, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' they grade each other, blind',     tc:'#cbd7e6', start:0.86, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' no model can vote for itself',     tc:'#eaf1f9', start:1.24, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' the fourth writes the verdict',    tc:'#cbd7e6', start:1.62, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' no cloud, no account, no bill',    tc:'#eaf1f9', start:2.00, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' nothing leaves the machine',       tc:'#cbd7e6', start:2.38, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' 6 case studies · syedtashfin.com', tc:'#2dd4bf', start:2.76, dur:0.40 }
   ];
-  var STATUS_FLIP = 1.24;   /* the pill switches when the fix lands */
-  var STATUS_ALERT = 'ALERT';
-  var STATUS_FIXED = 'FIXED';
-  var STATUS_ALERT_COLOR = '#fbbf24';
-  var STATUS_FIXED_COLOR = '#2dd4bf';
-  var statusEl = document.getElementById('tstatus');
-  var liveEl = document.getElementById('tlive');
-  var liveDot = liveEl.querySelector('.dot');
   var tbody = document.getElementById('tbody');
   var lineEls = LINES.map(function (L) {
     var d = document.createElement('div'); d.className = 'line';
@@ -255,14 +247,6 @@
     /* ---------- terminal ---------- */
     var clearing = tt > IDLE_AFTER;
     var idle = tt < 0.02 || clearing;
-
-    /* status pill: ALERT while the story is unresolved, FIXED once the fix lands */
-    var fixed = !idle && tt >= STATUS_FLIP;
-    var statusText = fixed ? STATUS_FIXED : STATUS_ALERT;
-    if (statusEl.textContent !== statusText) { statusEl.textContent = statusText; }
-    var statusColor = fixed ? STATUS_FIXED_COLOR : STATUS_ALERT_COLOR;
-    liveEl.style.color = statusColor;
-    liveDot.style.background = statusColor;
 
     var lineStates = LINES.map(function (L) {
       var prog = clamp01((tt - L.start) / L.dur);
