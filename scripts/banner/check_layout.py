@@ -57,6 +57,12 @@ PROBE = """(t) => {
   const ttitle = box(document.getElementById('ttitle'));
   const pill = box(document.getElementById('tlive'));
 
+  // headline copy must stay inside the identity column
+  const tagline = document.getElementById('tagline');
+  const tagRange = document.createRange();
+  tagRange.selectNodeContents(tagline);
+  const tagRight = +tagRange.getBoundingClientRect().right.toFixed(1);
+
   const lineEls = [...document.querySelectorAll('.line')];
   // the row the cursor belongs to, resolved by geometry (not by "last row with text")
   let cursorRow = -1;
@@ -85,6 +91,7 @@ PROBE = """(t) => {
     termLeft: +term.left.toFixed(1), termRight: +term.right.toFixed(1),
     chipsRight: +chipsBox.right.toFixed(1), chips,
     lines,
+    tagRight,
     cursorVisible: cursor.style.display !== 'none',
     cursorLeft, cursorRow, expected,
     barGap: +(pill.left - ttitle.right).toFixed(1),
@@ -127,6 +134,8 @@ def main() -> None:
                     failures.append(f"t={t:.2f} terminal line overflows: {ln['text']!r}")
 
             min_bar_gap = min(min_bar_gap, m["barGap"])
+            if m["tagRight"] > m["termLeft"] - 24:
+                failures.append(f"t={t:.2f} tagline reaches {m['tagRight']}, terminal starts at {m['termLeft']}")
             # the cursor sits deliberately idle before the first line starts and
             # while the body clears, so only check it during the typing window
             typing = first_start <= t <= idle_after
