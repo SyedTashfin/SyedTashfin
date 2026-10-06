@@ -1,6 +1,6 @@
 <div align="center">
 
-[![AI and platform engineering — building systems that complain before your users do](assets/platform-engineering-banner.gif)](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas)
+[![AI and platform engineering — building systems that complain before your users do](assets/platform-engineering-banner.gif)](https://syedtashfin.com/case-studies)
 
 # Syed Mohammad Shah Mostafa (Tash)
 

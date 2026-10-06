@@ -120,8 +120,8 @@
   <div id="term">
     <div id="tbar">
       <div id="tdots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
-      <div id="ttitle">ai council — local</div>
-      <div id="tlive"><span class="dot"></span>4 MODELS</div>
+      <div id="ttitle">video indexing — Thales</div>
+      <div id="tlive"><span class="dot"></span>EVERY FRAME</div>
     </div>
     <div id="tbody"></div>
     <div id="tprog"><div class="fill"></div></div>
@@ -162,16 +162,16 @@
     chipsEl.appendChild(s);
   });
 
-  /* ---------- terminal: the AI system, in words anyone can follow ---------- */
+  /* ---------- terminal: the video-indexing project, in plain words ---------- */
   var LINES = [
-    { sym:'$',  sc:'#8da2bd', text:' one question, four AI models',      tc:'#eaf1f9', start:0.10, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' three answer, one judges',         tc:'#cbd7e6', start:0.48, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' they grade each other, blind',     tc:'#cbd7e6', start:0.86, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' no model can vote for itself',     tc:'#eaf1f9', start:1.24, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' the fourth writes the verdict',    tc:'#cbd7e6', start:1.62, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' no cloud, no account, no bill',    tc:'#eaf1f9', start:2.00, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' nothing leaves the machine',       tc:'#cbd7e6', start:2.38, dur:0.40 },
-    { sym:'→',  sc:'#2dd4bf', text:' 6 case studies · syedtashfin.com', tc:'#2dd4bf', start:2.76, dur:0.40 }
+    { sym:'$',  sc:'#8da2bd', text:' hours of video in — one report out', tc:'#eaf1f9', start:0.10, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' an academic project with Thales',    tc:'#cbd7e6', start:0.48, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' it watches everything, forgets nothing', tc:'#eaf1f9', start:0.86, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' reads tail numbers off the aircraft', tc:'#cbd7e6', start:1.24, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' hears what is said, writes it down', tc:'#cbd7e6', start:1.62, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' ask "any trucks?" → timestamps',     tc:'#eaf1f9', start:2.00, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' a pdf an analyst can actually use',  tc:'#cbd7e6', start:2.38, dur:0.40 },
+    { sym:'→',  sc:'#2dd4bf', text:' 6 case studies · syedtashfin.com',   tc:'#2dd4bf', start:2.76, dur:0.40 }
   ];
   var tbody = document.getElementById('tbody');
   var lineEls = LINES.map(function (L) {
