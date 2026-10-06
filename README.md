@@ -1,10 +1,10 @@
 <div align="center">
 
-[![AI and platform engineering — building observable AI systems](assets/platform-engineering-banner.gif)](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas)
+[![AI and platform engineering — building systems that complain before your users do](assets/platform-engineering-banner.gif)](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas)
 
 # Syed Mohammad Shah Mostafa (Tash)
 
-### AI & Platform Engineer — building observable AI systems
+### AI & Platform Engineer — I build systems that complain before your users do
 
 Paris, France · Targeting English-speaking platform, backend, cloud and AI-platform roles
 
