@@ -1,12 +1,12 @@
 <div align="center">
 
-[![AI and platform engineering — building systems that complain before your users do](assets/platform-engineering-banner.gif)](https://syedtashfin.com/case-studies)
+[![Applied AI engineering, and the platform work underneath it](assets/platform-engineering-banner.gif)](https://syedtashfin.com/case-studies)
 
 # Syed Mohammad Shah Mostafa (Tash)
 
-### AI & Platform Engineer — I build systems that complain before your users do
+### Applied AI & Platform Engineer — I build systems that complain before your users do
 
-Paris, France · Targeting English-speaking platform, backend, cloud and AI-platform roles
+Paris, France · Targeting English-speaking applied-AI, LLM-systems, backend and platform engineering roles
 
 Merged upstream: [MCP TypeScript SDK #2862](https://github.com/modelcontextprotocol/typescript-sdk/pull/2862) — shipped in `@modelcontextprotocol/client@2.2.0`
 
@@ -16,7 +16,7 @@ Merged upstream: [MCP TypeScript SDK #2862](https://github.com/modelcontextproto
 
 ## What I do
 
-AI and platform engineer, focused on backend services, CI/CD and GitOps delivery, Kubernetes controls, telemetry, and AI systems that run on local infrastructure rather than external APIs. Work follows a single delivery path, so everything can be reviewed, released, observed and rolled back:
+Applied AI engineer focused on LLM systems — retrieval, agents, tool calling, evaluation — running on local or self-hosted infrastructure rather than external inference APIs, with the backend, CI/CD, Kubernetes and telemetry work that keeps them in production. Work follows a single delivery path, so everything can be reviewed, released, observed and rolled back:
 
 ```text
 code → tests → immutable artifact → reviewed GitOps → runtime → telemetry → rollback
@@ -28,20 +28,12 @@ Public work is grouped below by domain; each project is labeled by scope so the 
 
 The strongest proof is in the written studies — each maps a real system to what was built, how it was verified, and what it cost:
 
-- **[LC Website & Network Security Hardening](https://syedtashfin.com/case-studies/lc-website-security-hardening)** — audit → remediation → verification on LC's production Next.js platform: retired the live HTML uploader, sandboxed embedded content, bounded the lead APIs, 13/13 hardened tests.
-- **[Linguistic Communication — Public Platform, LC Academy & Operations](https://syedtashfin.com/case-studies/linguistic-communication-edtech)** — WordPress → versioned Next.js catalogue (299 SSG pages), staging/prod delivery on one VPS, and the LC Academy multi-agent classroom.
-- **[Multi-Tenant GitOps Platform](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas)** — CI → immutable image → reviewed GitOps → Argo CD → Prometheus-gated rollouts → rollback, on a multi-tenant Kubernetes model.
-- **[Secure Teacher Onboarding & Document Pipeline](https://syedtashfin.com/case-studies/secure-teacher-onboarding-document-pipeline)** — NAS + Cloudflare + local-API document pipeline for LC teacher onboarding.
 - **[OpsPilot — Local-First AI Operations Copilot](https://syedtashfin.com/case-studies/opspilot-local-first-ai-operations-copilot)** — RAG over runbooks with bounded, fail-closed LLM calls and Langfuse tracing.
 - **[LLM Council — Local Multi-LLM Orchestrator](https://syedtashfin.com/case-studies/llm-council-local-multi-llm-orchestrator)** — local Ollama inference behind an authenticated gateway, anonymized peer review and chairman synthesis.
-
-## Platform & delivery
-
-| Project | Scope | Engineering signal |
-| --- | --- | --- |
-| [Multi-Tenant GitOps Platform Lab](https://github.com/SyedTashfin/Outsight-MultiTenant-GitOps-Lab) | Production-style lab | GitHub Actions, multi-arch GHCR images, Helm overlays, Argo CD reconciliation, Prometheus-gated Argo Rollouts, RBAC, NetworkPolicy, Grafana + Loki. [Case study](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas) |
-| [Cloud Analytics ML Pipeline](https://github.com/SyedTashfin/Cloud-Analytics-ML-Pipeline) | Production-style data lab | Config-driven PySpark ingestion, feature engineering, MLlib training/evaluation, dashboard artifacts, local-to-GCP Dataproc parity. |
-| LC production infrastructure | Employer org — documented | WordPress → versioned Next.js/TypeScript catalogue (299 SSG pages), separate staging/prod GitHub Actions paths on one VPS, incident recovery. Covered in the [engineering brief](assets/from-commit-to-observable-rollback.pdf). |
+- **[Linguistic Communication — Public Platform, LC Academy & Operations](https://syedtashfin.com/case-studies/linguistic-communication-edtech)** — WordPress → versioned Next.js catalogue (299 SSG pages), staging/prod delivery on one VPS, and the LC Academy multi-agent classroom.
+- **[LC Website & Network Security Hardening](https://syedtashfin.com/case-studies/lc-website-security-hardening)** — audit → remediation → verification on LC's production Next.js platform: retired the live HTML uploader, sandboxed embedded content, bounded the lead APIs, 13/13 hardened tests.
+- **[Multi-Tenant GitOps Platform](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas)** — CI → immutable image → reviewed GitOps → Argo CD → Prometheus-gated rollouts → rollback, on a multi-tenant Kubernetes model.
+- **[Secure Teacher Onboarding & Document Pipeline](https://syedtashfin.com/case-studies/secure-teacher-onboarding-document-pipeline)** — NAS + Cloudflare + local-API document pipeline for LC teacher onboarding.
 
 ## Backend, local AI & agent systems
 
@@ -53,6 +45,14 @@ A recurring thread is **local AI**: self-hosted inference (Ollama serving a 30B 
 | [Local Multi-LLM Orchestrator](https://github.com/SyedTashfin/Local-Multi-LLM-Orchestrator) | Personal systems project | Local Ollama services (30B Qwen), anonymized peer review, chairman synthesis, strict JSON/Zod contracts, SQLite run history, health/latency observability. |
 | [OpsPilot](https://github.com/SyedTashfin/OpsPilot) | Personal systems project | Local-first RAG operations copilot: evidence collection across logs/metrics/deployments/runbooks, bounded structured LLM calls, persisted investigation steps, Ollama/Gemini provider boundaries, typed contracts, fail-closed validation, Langfuse tracing. |
 | [LC Academy (OpenMAIC)](https://github.com/linguisticcom/OpenMAIC) | Employer org — deployed | AI-assisted multi-agent classroom adapted from an open-source system, with organisation-aware access control and teacher review/publishing workflows. |
+
+## Platform & delivery
+
+| Project | Scope | Engineering signal |
+| --- | --- | --- |
+| [Multi-Tenant GitOps Platform Lab](https://github.com/SyedTashfin/Outsight-MultiTenant-GitOps-Lab) | Production-style lab | GitHub Actions, multi-arch GHCR images, Helm overlays, Argo CD reconciliation, Prometheus-gated Argo Rollouts, RBAC, NetworkPolicy, Grafana + Loki. [Case study](https://syedtashfin.com/case-studies/cicd-gitops-multitenant-kubernetes-saas) |
+| [Cloud Analytics ML Pipeline](https://github.com/SyedTashfin/Cloud-Analytics-ML-Pipeline) | Production-style data lab | Config-driven PySpark ingestion, feature engineering, MLlib training/evaluation, dashboard artifacts, local-to-GCP Dataproc parity. |
+| LC production infrastructure | Employer org — documented | WordPress → versioned Next.js/TypeScript catalogue (299 SSG pages), separate staging/prod GitHub Actions paths on one VPS, incident recovery. Covered in the [engineering brief](assets/from-commit-to-observable-rollback.pdf). |
 
 ## Security engineering
 
@@ -103,7 +103,7 @@ Full write-up: [LC Website & Network Security Hardening — audit → remediatio
 
 ## Get in touch
 
-Open to platform, backend, cloud, and AI-platform roles — Paris or remote. The fastest read is the [six-page engineering brief](assets/from-commit-to-observable-rollback.pdf); the deepest is the [portfolio evidence map](https://syedtashfin.com/evidence-map).
+Open to applied-AI, LLM-systems, backend and platform roles — Paris or remote. The fastest read is the [six-page engineering brief](assets/from-commit-to-observable-rollback.pdf); the deepest is the [portfolio evidence map](https://syedtashfin.com/evidence-map).
 
 [Email](mailto:syed@syedtashfin.com) · [LinkedIn](https://www.linkedin.com/in/syed-mostafa) · [Portfolio](https://syedtashfin.com)
 
